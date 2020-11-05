@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+body {
+  margin: 2rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+.animeLeft {
+  transform: translate(-20px);
+  opacity: 0;
+  animation: animeLeft  .3s forwards;
+}
+
+@keyframes animeLeft {
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}
+
+.loading {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  justify-self: center;
+  border-radius: 50%;
+  border: 5px solid rgb(152,102,251);
+  border-right-color: transparent;
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Component Lists
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 7.5rem;
+  color: #6e47bb;
+  border-radius: 4px;
+  padding: 0 1rem;
+  transition: background-color 0.5s ease;
+  background-color: #c0d7ff;
+  &:hover {
+    background-color: #639aff;
+    color: #fff;
+  }
+}
+
+// Component In Data
+.infoComponent {
+  display: flex;
+  flex-direction: column;
+  p {
+    margin: 0;
+    margin-bottom: 1rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    background-color: #eff2f7;
+    color: #48486b;
+    padding: 10px 10px;
+    span {
+      min-height: 3rem;
+      font-weight: 600;
+      margin-right: 10px !important;
+      background-color: #9866fb;
+      color: #fff;
+      padding: 0 1rem;
+      display: flex;
+      align-self: stretch;
+      align-items: center;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .lists {
+    display: flex;
+    flex-direction: column;
+    .linkItem {
+      border-left: 10px solid #9866fb;
+      padding-left: 1rem;
+      margin: 0;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      // &:last-child {
+      //   margin-bottom: 0;
+      // }
+    }
+  }
+}

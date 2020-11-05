@@ -1,0 +1,36 @@
+.header {
+  margin-bottom: 2rem;
+}
+
+.header ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background: #f0f2f7;
+  padding: .5rem;
+  border-radius: 5px;
+}
+
+.header ul li {
+  margin-right: 1rem;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.5s ease;
+  background-color: #639aff;
+  &.active, 
+  &:hover {
+    background-color: #9866fb;
+  }
+  span {
+    margin-left: 5px;
+  }
+}
