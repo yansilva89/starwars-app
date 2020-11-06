@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import styles from './Starships.module.scss';
 //
 import HeadTitle from '../HeadTitle/HeadTitle';
+// Api
+import apiUrl from '../../Service/BaseUrl'
 
 const Starships = () => {
   const [starships, setStarships] = React.useState(null);
@@ -24,7 +26,7 @@ const Starships = () => {
         setLoading(false);
       }
     }
-    fetchListOptions(`https://swapi.dev/api/starships`);
+    fetchListOptions(`${apiUrl}starships`);
   }, []);
 
   if (loading) return <div className="loading"></div>;

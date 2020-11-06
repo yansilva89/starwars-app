@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import styles from './Planets.module.scss';
 //
 import HeadTitle from '../HeadTitle/HeadTitle';
+// Api
+import apiUrl from '../../Service/BaseUrl'
 
 const Planets = () => {
   const [planets, setPlanets] = React.useState(null);
@@ -24,7 +26,7 @@ const Planets = () => {
         setLoading(false);
       }
     }
-    fetchListOptions(`https://swapi.dev/api/planets`);
+    fetchListOptions(`${apiUrl}planets`);
   }, []);
 
   if (loading) return <div className="loading"></div>;

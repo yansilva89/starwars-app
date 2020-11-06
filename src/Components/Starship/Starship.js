@@ -5,6 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styles from './Starship.module.scss';
 //
 import HeadTitle from '../HeadTitle/HeadTitle';
+// Api
+import apiUrl from '../../Service/BaseUrl'
 
 const Starship = () => {
   const [starship, setStarship] = React.useState(null);
@@ -52,7 +54,7 @@ const Starship = () => {
         setLoading(false);
       }
     }
-    fetchProduto(`https://swapi.dev/api/starships/${id}`);
+    fetchProduto(`${apiUrl}starships/${id}`);
   }, [id]);
 
   if (loading) return <div className="loading"></div>;

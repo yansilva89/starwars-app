@@ -3,6 +3,8 @@ import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 //
 import HeadTitle from '../HeadTitle/HeadTitle';
+// Api
+import apiUrl from '../../Service/BaseUrl'
 
 const Vehicles = () => {
   const [vehicles, setVehicles] = React.useState(null);
@@ -51,7 +53,7 @@ const Vehicles = () => {
         setLoading(false);
       }
     }
-    fetchProduto(`https://swapi.dev/api/vehicles/${id}`);
+    fetchProduto(`${apiUrl}vehicles/${id}`);
   }, [id]);
 
   if (loading) return <div className="loading"></div>;

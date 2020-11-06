@@ -5,6 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styles from './Planet.module.scss';
 //
 import HeadTitle from '../HeadTitle/HeadTitle';
+// Api
+import apiUrl from '../../Service/BaseUrl'
 
 const Planet = () => {
   const [planet, setPlanet] = React.useState(null);
@@ -52,7 +54,7 @@ const Planet = () => {
         setLoading(false);
       }
     }
-    fetchProduto(`https://swapi.dev/api/planets/${id}`);
+    fetchProduto(`${apiUrl}planets/${id}`);
   }, [id]);
 
   if (loading) return <div className="loading"></div>;

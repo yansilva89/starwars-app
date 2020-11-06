@@ -5,6 +5,8 @@ import styles from './Person.module.scss';
 import { useParams, useNavigate } from 'react-router-dom';
 //
 import HeadTitle from '../HeadTitle/HeadTitle'
+// Api
+import apiUrl from '../../Service/BaseUrl'
 
 const Person = () => {
   const [person, setPerson] = React.useState(null);
@@ -53,7 +55,7 @@ const Person = () => {
         setLoading(false);
       }
     }
-    fetchProduto(`https://swapi.dev/api/people/${id}`);
+    fetchProduto(`${apiUrl}people/${id}`);
   }, [id]);
 
   if (loading) return <div className="loading"></div>;

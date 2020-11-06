@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import styles from './People.module.scss';
 //
 import HeadTitle from '../HeadTitle/HeadTitle'
+// Api
+import apiUrl from '../../Service/BaseUrl'
 
 const People = () => {
   const [people, setPeople] = React.useState(null);
@@ -24,7 +26,7 @@ const People = () => {
         setLoading(false);
       }
     }
-    fetchListOptions(`https://swapi.dev/api/people`);
+    fetchListOptions(`${apiUrl}people`);
   }, []);
 
   if (loading) return <div className="loading"></div>;
