@@ -3,6 +3,8 @@ import React from 'react';
 import styles from './Person.module.scss';
 // Router Imports
 import { useParams, useNavigate } from 'react-router-dom';
+//
+import HeadTitle from '../HeadTitle/HeadTitle'
 
 const Person = () => {
   const [person, setPerson] = React.useState(null);
@@ -59,6 +61,10 @@ const Person = () => {
   if (person === null) return null;
   return (
     <div className={`${styles.Person} animeLeft infoComponent`}>
+      <HeadTitle
+        title={`StarWars App | ${person.nome}`}
+        description={`StarWars App | ${person.descricao}`}
+      />
       {Object.keys(person).map(key => {
         if (!Array.isArray(person[key])) {
           return <p><span>{formatTitle(key)}</span>{person[key]}</p>;

@@ -1,6 +1,8 @@
 import React from 'react'
 // Router Imports
 import { useParams, useNavigate } from 'react-router-dom';
+//
+import HeadTitle from '../HeadTitle/HeadTitle';
 
 const Species = () => {
   const [species, setSpecies] = React.useState(null);
@@ -57,6 +59,10 @@ const Species = () => {
   if (species === null) return null;
   return (
     <div className={`animeLeft infoComponent`}>
+      <HeadTitle 
+        title={`StarWars App | ${species.nome}`}
+        description={`StarWars App | ${species.descricao}`}
+      />
       {Object.keys(species).map(key => {
         if (!Array.isArray(species[key])) {
           return <p><span>{formatTitle(key)}</span>{species[key]}</p>;

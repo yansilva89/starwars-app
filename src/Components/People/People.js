@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // Styles
 import styles from './People.module.scss';
+//
+import HeadTitle from '../HeadTitle/HeadTitle'
 
 const People = () => {
   const [people, setPeople] = React.useState(null);
@@ -30,6 +32,10 @@ const People = () => {
   if (people === null) return null;
   return (
     <div className={`${styles.people} animeLeft`}>
+      <HeadTitle
+        title={`StarWars App | ${people.nome}`}
+        description={`StarWars App | ${people.descricao}`}
+      />
       {people.results.map((person, i) => (
         <Link className={`${styles.nome} card`} to={`/people/person/${i + 1}/`} key={person.name}>
           {person.name}

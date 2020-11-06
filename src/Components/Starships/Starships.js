@@ -3,6 +3,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 // Styles
 import styles from './Starships.module.scss';
+//
+import HeadTitle from '../HeadTitle/HeadTitle';
 
 const Starships = () => {
   const [starships, setStarships] = React.useState(null);
@@ -30,6 +32,10 @@ const Starships = () => {
   if (starships === null) return null;
   return (
     <div className={`${styles.starships} animeLeft`}>
+      <HeadTitle 
+        title={`StarWars App | ${starships.nome}`}
+        description={`StarWars App | ${starships.descricao}`}
+      />
       {starships.results.map((starship, i) => (
         <Link className={`${styles.nome} card`} to={`/starships/starship/${i + 1}/`} key={starship.name}>
           {starship.name}

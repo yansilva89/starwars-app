@@ -1,6 +1,8 @@
 import React from 'react'
 // Router Imports
 import { useParams, useNavigate } from 'react-router-dom';
+//
+import HeadTitle from '../HeadTitle/HeadTitle';
 
 const Vehicles = () => {
   const [vehicles, setVehicles] = React.useState(null);
@@ -57,6 +59,10 @@ const Vehicles = () => {
   if (vehicles === null) return null;
   return (
     <div className={`animeLeft infoComponent`}>
+      <HeadTitle 
+        title={`StarWars App | ${vehicles.nome}`}
+        description={`StarWars App | ${vehicles.descricao}`}
+      />
       {Object.keys(vehicles).map(key => {
         if (!Array.isArray(vehicles[key])) {
           return <p><span>{formatTitle(key)}</span>{vehicles[key]}</p>;

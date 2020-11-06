@@ -3,6 +3,8 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 // Styles
 import styles from './Starship.module.scss';
+//
+import HeadTitle from '../HeadTitle/HeadTitle';
 
 const Starship = () => {
   const [starship, setStarship] = React.useState(null);
@@ -58,6 +60,10 @@ const Starship = () => {
   if (starship === null) return null;
   return (
     <div className={`${styles.starship} animeLeft infoComponent`}>
+      <HeadTitle 
+        title={`StarWars App | ${starship.nome}`}
+        description={`StarWars App | ${starship.descricao}`}
+      />
       {Object.keys(starship).map(key => {
         if (!Array.isArray(starship[key])) {
           return <p><span>{formatTitle(key)}</span>{starship[key]}</p>;

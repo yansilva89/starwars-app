@@ -3,6 +3,8 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 // Styles
 import styles from './Planet.module.scss';
+//
+import HeadTitle from '../HeadTitle/HeadTitle';
 
 const Planet = () => {
   const [planet, setPlanet] = React.useState(null);
@@ -58,6 +60,10 @@ const Planet = () => {
   if (planet === null) return null;
   return (
     <div className={`${styles.planet} animeLeft infoComponent`}>
+      <HeadTitle 
+        title={`StarWars App | ${planet.nome}`}
+        description={`StarWars App | ${planet.descricao}`}
+      />
       {Object.keys(planet).map(key => {
         if (!Array.isArray(planet[key])) {
           return <p><span>{formatTitle(key)}</span>{planet[key]}</p>;
