@@ -18,7 +18,7 @@ const Header = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName={styles.active} className={styles.link} to="people" end>
+          <NavLink activeClassName={styles.active} className={styles.link} to="people">
             <FontAwesomeIcon icon={faUser} size="xs" />
             <span>Personagens</span>
           </NavLink>
