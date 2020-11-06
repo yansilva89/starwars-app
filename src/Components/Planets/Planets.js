@@ -35,8 +35,8 @@ const Planets = () => {
   return (
     <div className={`${styles.planets} animeLeft`}>
       <HeadTitle 
-        title={`StarWars App | ${planets.nome}`}
-        description={`StarWars App | ${planets.descricao}`}
+        title={`StarWars App | Planets`}
+        description={`StarWars App | See Planets list`}
       />
       {planets.results.map((planet, i) => (
         <Link className={`${styles.nome} card`} to={`/planets/planet/${i + 1}/`} key={planet.name}>

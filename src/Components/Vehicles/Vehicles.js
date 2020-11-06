@@ -62,7 +62,7 @@ const Vehicles = () => {
   return (
     <div className={`animeLeft infoComponent`}>
       <HeadTitle 
-        title={`StarWars App | ${vehicles.nome}`}
+        title={`StarWars App | ${vehicles.name}`}
         description={`StarWars App | ${vehicles.descricao}`}
       />
       {Object.keys(vehicles).map(key => {

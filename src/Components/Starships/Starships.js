@@ -35,8 +35,8 @@ const Starships = () => {
   return (
     <div className={`${styles.starships} animeLeft`}>
       <HeadTitle 
-        title={`StarWars App | ${starships.nome}`}
-        description={`StarWars App | ${starships.descricao}`}
+        title={`StarWars App | Starships`}
+        description={`StarWars App | See Starships list`}
       />
       {starships.results.map((starship, i) => (
         <Link className={`${styles.nome} card`} to={`/starships/starship/${i + 1}/`} key={starship.name}>

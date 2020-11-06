@@ -64,7 +64,7 @@ const Person = () => {
   return (
     <div className={`${styles.Person} animeLeft infoComponent`}>
       <HeadTitle
-        title={`StarWars App | ${person.nome}`}
+        title={`StarWars App | ${person.name}`}
         description={`StarWars App | ${person.descricao}`}
       />
       {Object.keys(person).map(key => {

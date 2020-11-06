@@ -35,8 +35,8 @@ const People = () => {
   return (
     <div className={`${styles.people} animeLeft`}>
       <HeadTitle
-        title={`StarWars App | ${people.nome}`}
-        description={`StarWars App | ${people.descricao}`}
+        title={`StarWars App | People`}
+        description={`StarWars App | See People list`}
       />
       {people.results.map((person, i) => (
         <Link className={`${styles.nome} card`} to={`/people/person/${i + 1}/`} key={person.name}>

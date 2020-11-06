@@ -63,7 +63,7 @@ const Starship = () => {
   return (
     <div className={`${styles.starship} animeLeft infoComponent`}>
       <HeadTitle 
-        title={`StarWars App | ${starship.nome}`}
+        title={`StarWars App | ${starship.name}`}
         description={`StarWars App | ${starship.descricao}`}
       />
       {Object.keys(starship).map(key => {

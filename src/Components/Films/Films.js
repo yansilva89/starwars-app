@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 // Router Imports
 import { useParams, useNavigate } from 'react-router-dom';
 //
-import HeadTitle from '../HeadTitle/HeadTitle'
+import HeadTitle from '../HeadTitle/HeadTitle';
 // Api
-import apiUrl from '../../Service/BaseUrl'
+import apiUrl from '../../Service/BaseUrl';
 
 const Films = () => {
   const [film, setFilm] = React.useState(null);
@@ -15,21 +15,21 @@ const Films = () => {
 
   function getItemList({ target }) {
     const value = target.innerText;
-    // Get a number from string api link 
+    // Get a number from string api link
     let number = value.match(/\d/g);
-    number = number.join("");
-    if(value.includes('/people/')) {
-      itemRouterNavigate(`/people/person/${number}/`)
-    } else if(value.includes('/planets/')) {
-      itemRouterNavigate(`/planets/planet/${number}/`)
-    } else if(value.includes('/starships/')) {
-      itemRouterNavigate(`/starships/starship/${number}/`)
-    } else if(value.includes('/films/')) {
-      itemRouterNavigate(`/films/${number}/`)
-    } else if(value.includes('/vehicles/')) {
-      itemRouterNavigate(`/vehicles/${number}/`)
-    } else if(value.includes('/species/')) {
-      itemRouterNavigate(`/species/${number}/`)
+    number = number.join('');
+    if (value.includes('/people/')) {
+      itemRouterNavigate(`/people/person/${number}/`);
+    } else if (value.includes('/planets/')) {
+      itemRouterNavigate(`/planets/planet/${number}/`);
+    } else if (value.includes('/starships/')) {
+      itemRouterNavigate(`/starships/starship/${number}/`);
+    } else if (value.includes('/films/')) {
+      itemRouterNavigate(`/films/${number}/`);
+    } else if (value.includes('/vehicles/')) {
+      itemRouterNavigate(`/vehicles/${number}/`);
+    } else if (value.includes('/species/')) {
+      itemRouterNavigate(`/species/${number}/`);
     } else {
       console.log('Não tem');
     }
@@ -37,7 +37,7 @@ const Films = () => {
 
   const formatTitle = (key) => {
     return key.replace(/_/g, ' ').toUpperCase();
-  }
+  };
 
   React.useEffect(() => {
     async function fetchProduto(url) {
@@ -62,12 +62,17 @@ const Films = () => {
   return (
     <div className={`animeLeft infoComponent`}>
       <HeadTitle
-        title={`StarWars App | ${film.nome}`}
+        title={`StarWars App | ${film.title}`}
         description={`StarWars App | ${film.descricao}`}
       />
-      {Object.keys(film).map(key => {
+      {Object.keys(film).map((key) => {
         if (!Array.isArray(film[key])) {
-          return <p><span>{formatTitle(key)}</span>{film[key]}</p>;
+          return (
+            <p>
+              <span>{formatTitle(key)}</span>
+              {film[key]}
+            </p>
+          );
         } else {
           return (
             <div className={`lists`}>
@@ -78,10 +83,11 @@ const Films = () => {
                 </p>
               ))}
             </div>
-          )
+          );
         }
       })}
     </div>
-  )};
+  );
+};
 
-export default Films
+export default Films;

@@ -63,7 +63,7 @@ const Planet = () => {
   return (
     <div className={`${styles.planet} animeLeft infoComponent`}>
       <HeadTitle 
-        title={`StarWars App | ${planet.nome}`}
+        title={`StarWars App | ${planet.name}`}
         description={`StarWars App | ${planet.descricao}`}
       />
       {Object.keys(planet).map(key => {

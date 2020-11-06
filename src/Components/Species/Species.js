@@ -62,7 +62,7 @@ const Species = () => {
   return (
     <div className={`animeLeft infoComponent`}>
       <HeadTitle 
-        title={`StarWars App | ${species.nome}`}
+        title={`StarWars App | ${species.name}`}
         description={`StarWars App | ${species.descricao}`}
       />
       {Object.keys(species).map(key => {
