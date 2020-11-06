@@ -1,3 +1,3 @@
-const apiUrl = 'http://swapi.dev/api/';
+const apiUrl = 'http://swapi.dev/api/'; // Teste
 
 export default apiUrl;
