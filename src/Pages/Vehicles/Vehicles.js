@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
 // Router Imports
 import { useParams, useNavigate } from 'react-router-dom';
-//
-import HeadTitle from '../HeadTitle/HeadTitle';
-// Api
-import apiUrl from '../../Service/BaseUrl'
+// Title Page
+import HeadTitle from '../HeadTitle/HeadTitle'
+// Services
+import api from '../../Service/ApiUrl'
+// Components
+import ItemInfo from '../../Components/ItemInfo/ItemInfo';
 
 const Vehicles = () => {
   const [vehicles, setVehicles] = React.useState(null);
@@ -35,53 +37,32 @@ const Vehicles = () => {
     }
   }
 
-  const formatTitle = (key) => {
-    return key.replace(/_/g, ' ').toUpperCase();
-  }
-
   React.useEffect(() => {
-    async function fetchProduto(url) {
+    async function getVehiclesInfo(url) {
       try {
         setLoading(true);
-        const response = await fetch(url);
-        const json = await response.json();
-        setVehicles(json);
-        console.log(json);
-      } catch (erro) {
+        const { data } = await api.get(`/vehicles/${url}`);
+        setVehicles(data);
+      } catch (error) {
         setError('Erro de requisição.');
       } finally {
         setLoading(false);
       }
     }
-    fetchProduto(`${apiUrl}vehicles/${id}`);
+    getVehiclesInfo(id);
   }, [id]);
 
   if (loading) return <div className="loading"></div>;
   if (error) return <p>{error}</p>;
   if (vehicles === null) return null;
   return (
-    <div className={`animeLeft infoComponent`}>
-      <HeadTitle 
+    <ul className={`animeLeft infoComponent`}>
+      <HeadTitle
         title={`StarWars App | ${vehicles.name}`}
         description={`StarWars App | ${vehicles.descricao}`}
       />
-      {Object.keys(vehicles).map(key => {
-        if (!Array.isArray(vehicles[key])) {
-          return <p><span>{formatTitle(key)}</span>{vehicles[key]}</p>;
-        } else {
-          return (
-            <div className={`lists`}>
-              <h3>{formatTitle(key)}</h3>
-              {vehicles[key].map((value) => (
-                <p className={`linkItem`} onClick={getItemList} key={value}>
-                  {value}
-                </p>
-              ))}
-            </div>
-          )
-        }
-      })}
-    </div>
+      <ItemInfo data={vehicles} verifyLinkList={getItemList} />
+    </ul>
   )};
 
 export default Vehicles

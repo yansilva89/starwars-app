@@ -62,20 +62,31 @@ h1 {
 }
 
 // Component Lists
-.card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 7.5rem;
-  color: #6e47bb;
-  border-radius: 4px;
-  padding: 0 1rem;
-  transition: background-color 0.5s ease;
-  background-color: #c0d7ff;
-  &:hover {
-    background-color: #639aff;
-    color: #fff;
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  .card {
+    list-style: none;
+    height: 7.5rem;
+    .link-list {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      border-radius: 4px;
+      height: 100%;
+      color: #6e47bb;
+      transition: background-color 0.5s ease;
+      background-color: #c0d7ff;
+      &:hover {
+        background-color: #639aff;
+        color: #fff;
+      }
+    }
   }
 }
 
@@ -83,7 +94,9 @@ h1 {
 .infoComponent {
   display: flex;
   flex-direction: column;
-  p {
+  margin: 0;
+  padding: 0;
+  li {
     margin: 0;
     margin-bottom: 1rem;
     min-height: 3rem;
@@ -107,18 +120,16 @@ h1 {
       margin-bottom: 0;
     }
   }
-  .lists {
+  .listsInList {
     display: flex;
     flex-direction: column;
-    .linkItem {
+    padding: 0;
+    .linkItemInList {
       border-left: 10px solid #9866fb;
       padding-left: 1rem;
       margin: 0;
       margin-bottom: 1rem;
       cursor: pointer;
-      // &:last-child {
-      //   margin-bottom: 0;
-      // }
     }
   }
 }

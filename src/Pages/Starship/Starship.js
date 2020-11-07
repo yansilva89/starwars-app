@@ -1,12 +1,12 @@
 import React from 'react';
 // Router Imports
-import { useNavigate, useParams } from 'react-router-dom';
-// Styles
-import styles from './Starship.module.scss';
-//
-import HeadTitle from '../HeadTitle/HeadTitle';
-// Api
-import apiUrl from '../../Service/BaseUrl'
+import { useParams, useNavigate } from 'react-router-dom';
+// Title Page
+import HeadTitle from '../HeadTitle/HeadTitle'
+// Services
+import api from '../../Service/ApiUrl'
+// Components
+import ItemInfo from '../../Components/ItemInfo/ItemInfo';
 
 const Starship = () => {
   const [starship, setStarship] = React.useState(null);
@@ -37,52 +37,32 @@ const Starship = () => {
     }
   }
 
-  const formatTitle = (key) => {
-    return key.replace(/_/g, ' ').toUpperCase();
-  };
-
   React.useEffect(() => {
-    async function fetchProduto(url) {
+    async function getStarshipInfo(url) {
       try {
         setLoading(true);
-        const response = await fetch(url);
-        const json = await response.json();
-        setStarship(json);
-      } catch (erro) {
+        const { data } = await api.get(`/starships/${url}`);
+        setStarship(data);
+      } catch (error) {
         setError('Erro de requisição.');
       } finally {
         setLoading(false);
       }
     }
-    fetchProduto(`${apiUrl}starships/${id}`);
+    getStarshipInfo(id);
   }, [id]);
 
   if (loading) return <div className="loading"></div>;
   if (error) return <p>{error}</p>;
   if (starship === null) return null;
   return (
-    <div className={`${styles.starship} animeLeft infoComponent`}>
-      <HeadTitle 
+    <ul className={`animeLeft infoComponent`}>
+      <HeadTitle
         title={`StarWars App | ${starship.name}`}
         description={`StarWars App | ${starship.descricao}`}
       />
-      {Object.keys(starship).map(key => {
-        if (!Array.isArray(starship[key])) {
-          return <p><span>{formatTitle(key)}</span>{starship[key]}</p>;
-        } else {
-          return (
-            <div className={`lists`}>
-              <h3>{formatTitle(key)}</h3>
-              {starship[key].map((value) => (
-                <p className={`linkItem`} onClick={getItemList} key={value}>
-                  {value}
-                </p>
-              ))}
-            </div>
-          )
-        }
-      })}
-    </div>
+      <ItemInfo data={starship} verifyLinkList={getItemList} />
+    </ul>
   )};
 
 export default Starship;

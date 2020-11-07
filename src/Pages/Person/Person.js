@@ -1,12 +1,12 @@
 import React from 'react';
-// Styles
-import styles from './Person.module.scss';
 // Router Imports
 import { useParams, useNavigate } from 'react-router-dom';
-//
+// Title Page
 import HeadTitle from '../HeadTitle/HeadTitle'
-// Api
-import apiUrl from '../../Service/BaseUrl'
+// Services
+import api from '../../Service/ApiUrl'
+// Components
+import ItemInfo from '../../Components/ItemInfo/ItemInfo';
 
 const Person = () => {
   const [person, setPerson] = React.useState(null);
@@ -37,53 +37,32 @@ const Person = () => {
     }
   }
 
-  const formatTitle = (key) => {
-    return key.replace(/_/g, ' ').toUpperCase();
-  }
-
   React.useEffect(() => {
-    async function fetchProduto(url) {
+    async function getPersonInfo(url) {
       try {
         setLoading(true);
-        const response = await fetch(url);
-        const json = await response.json();
-        setPerson(json);
-        console.log(json);
-      } catch (erro) {
+        const { data } = await api.get(`/people/${url}`);
+        setPerson(data);
+      } catch (error) {
         setError('Erro de requisição.');
       } finally {
         setLoading(false);
       }
     }
-    fetchProduto(`${apiUrl}people/${id}`);
+    getPersonInfo(id);
   }, [id]);
 
   if (loading) return <div className="loading"></div>;
   if (error) return <p>{error}</p>;
   if (person === null) return null;
   return (
-    <div className={`${styles.Person} animeLeft infoComponent`}>
+    <ul className={`animeLeft infoComponent`}>
       <HeadTitle
         title={`StarWars App | ${person.name}`}
         description={`StarWars App | ${person.descricao}`}
       />
-      {Object.keys(person).map(key => {
-        if (!Array.isArray(person[key])) {
-          return <p><span>{formatTitle(key)}</span>{person[key]}</p>;
-        } else {
-          return (
-            <div className={`lists`}>
-              <h3>{formatTitle(key)}</h3>
-              {person[key].map((value) => (
-                <p className={`linkItem`} onClick={getItemList} key={value}>
-                  {value}
-                </p>
-              ))}
-            </div>
-          )
-        }
-      })}
-    </div>
+      <ItemInfo data={person} verifyLinkList={getItemList} />
+    </ul>
   )};
 
 export default Person;

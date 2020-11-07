@@ -1,12 +1,12 @@
 import React from 'react';
 // Router Imports
-import { useNavigate, useParams } from 'react-router-dom';
-// Styles
-import styles from './Planet.module.scss';
-//
-import HeadTitle from '../HeadTitle/HeadTitle';
-// Api
-import apiUrl from '../../Service/BaseUrl'
+import { useParams, useNavigate } from 'react-router-dom';
+// Title Page
+import HeadTitle from '../HeadTitle/HeadTitle'
+// Services
+import api from '../../Service/ApiUrl'
+// Components
+import ItemInfo from '../../Components/ItemInfo/ItemInfo';
 
 const Planet = () => {
   const [planet, setPlanet] = React.useState(null);
@@ -37,52 +37,32 @@ const Planet = () => {
     }
   }
 
-  const formatTitle = (key) => {
-    return key.replace(/_/g, ' ').toUpperCase();
-  }
-
   React.useEffect(() => {
-    async function fetchProduto(url) {
+    async function getPlanetInfo(url) {
       try {
         setLoading(true);
-        const response = await fetch(url);
-        const json = await response.json();
-        setPlanet(json);
-      } catch (erro) {
+        const { data } = await api.get(`/planets/${url}`);
+        setPlanet(data);
+      } catch (error) {
         setError('Erro de requisição.');
       } finally {
         setLoading(false);
       }
     }
-    fetchProduto(`${apiUrl}planets/${id}`);
+    getPlanetInfo(id);
   }, [id]);
 
   if (loading) return <div className="loading"></div>;
   if (error) return <p>{error}</p>;
   if (planet === null) return null;
   return (
-    <div className={`${styles.planet} animeLeft infoComponent`}>
-      <HeadTitle 
+    <ul className={`animeLeft infoComponent`}>
+      <HeadTitle
         title={`StarWars App | ${planet.name}`}
         description={`StarWars App | ${planet.descricao}`}
       />
-      {Object.keys(planet).map(key => {
-        if (!Array.isArray(planet[key])) {
-          return <p><span>{formatTitle(key)}</span>{planet[key]}</p>;
-        } else {
-          return (
-            <div className={`lists`}>
-              <h3>{formatTitle(key)}</h3>
-              {planet[key].map((value) => (
-                <p className={`linkItem`} onClick={getItemList} key={value}>
-                  {value}
-                </p>
-              ))}
-            </div>
-          )
-        }
-      })}
-    </div>
+      <ItemInfo data={planet} verifyLinkList={getItemList} />
+    </ul>
   )};
 
 export default Planet;

@@ -1,10 +1,12 @@
 import React from 'react';
 // Router Imports
 import { useParams, useNavigate } from 'react-router-dom';
-//
+// Title Page
 import HeadTitle from '../HeadTitle/HeadTitle';
-// Api
-import apiUrl from '../../Service/BaseUrl';
+// Services
+import api from '../../Service/ApiUrl';
+// Components
+import ItemInfo from '../../Components/ItemInfo/ItemInfo';
 
 const Films = () => {
   const [film, setFilm] = React.useState(null);
@@ -35,58 +37,32 @@ const Films = () => {
     }
   }
 
-  const formatTitle = (key) => {
-    return key.replace(/_/g, ' ').toUpperCase();
-  };
-
   React.useEffect(() => {
-    async function fetchProduto(url) {
+    async function getFilmInfo(url) {
       try {
         setLoading(true);
-        const response = await fetch(url);
-        const json = await response.json();
-        setFilm(json);
-        console.log(json);
-      } catch (erro) {
+        const { data } = await api.get(`/films/${url}`);
+        setFilm(data);
+      } catch (error) {
         setError('Erro de requisição.');
       } finally {
         setLoading(false);
       }
     }
-    fetchProduto(`${apiUrl}films/${id}`);
+    getFilmInfo(id);
   }, [id]);
 
   if (loading) return <div className="loading"></div>;
   if (error) return <p>{error}</p>;
   if (film === null) return null;
   return (
-    <div className={`animeLeft infoComponent`}>
+    <ul className={`animeLeft infoComponent`}>
       <HeadTitle
         title={`StarWars App | ${film.title}`}
         description={`StarWars App | ${film.descricao}`}
       />
-      {Object.keys(film).map((key) => {
-        if (!Array.isArray(film[key])) {
-          return (
-            <p>
-              <span>{formatTitle(key)}</span>
-              {film[key]}
-            </p>
-          );
-        } else {
-          return (
-            <div className={`lists`}>
-              <h3>{formatTitle(key)}</h3>
-              {film[key].map((value) => (
-                <p className={`linkItem`} onClick={getItemList} key={value}>
-                  {value}
-                </p>
-              ))}
-            </div>
-          );
-        }
-      })}
-    </div>
+      <ItemInfo data={film} verifyLinkList={getItemList} />
+    </ul>
   );
 };
 
