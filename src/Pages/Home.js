@@ -11,8 +11,8 @@ const Home = () => {
   return (
     <div className="home animeLeft">
       <HeadTitle
-        title={`StarWars App`}
-        description={`StarWars App | Bem vindo ao StarWars App`}
+        title={`StarWars App | Welcome`}
+        description={`StarWars App | Welcome to StarWars App`}
       />
       <h1>
         <span>SWAPI</span> | Explore o universo Star Wars

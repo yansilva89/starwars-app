@@ -2,7 +2,7 @@ import React from 'react';
 // Router Imports
 import { useParams, useNavigate } from 'react-router-dom';
 // Title Page
-import HeadTitle from '../HeadTitle/HeadTitle'
+import HeadTitle from '../../Components/HeadTitle/HeadTitle'
 // Services
 import api from '../../Service/ApiUrl'
 // Components

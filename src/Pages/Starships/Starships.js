@@ -1,6 +1,6 @@
 import React from 'react';
 // Title Page
-import HeadTitle from '../HeadTitle/HeadTitle';
+import HeadTitle from '../../Components/HeadTitle/HeadTitle';
 // Services
 import api from '../../Service/ApiUrl';
 // Components
