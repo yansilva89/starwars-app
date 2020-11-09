@@ -133,3 +133,9 @@ h1 {
     }
   }
 }
+
+@media (max-width: 450px) {
+  .grid-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
