@@ -39,8 +39,8 @@ Versão de produção: <a>http://swapp-yan-silva.surge.sh/</a>
 
 <h3>Disponibilização de prints das telas da aplicação em funcionamento:</h3>
 
-<img align="left" width="300" height="300" src="src/assets/img/prints/1.png">
-<img align="left" width="300" height="300" src="src/assets/img/prints/2.png">
-<img align="left" width="300" height="300" src="src/assets/img/prints/3.png">
-<img align="left" width="300" height="300" src="src/assets/img/prints/4.png">
-<img align="left" width="300" height="300" src="src/assets/img/prints/5.png">
+<img align="left" width="200" height="200" src="src/assets/img/prints/1.png">
+<img align="left" width="200" height="200" src="src/assets/img/prints/2.png">
+<img align="left" width="200" height="200" src="src/assets/img/prints/3.png">
+<img align="left" width="200" height="200" src="src/assets/img/prints/4.png">
+<img align="left" width="200" height="200" src="src/assets/img/prints/5.png">
